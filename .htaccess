@@ -1,6 +1,0 @@
-Options +FollowSymlinks
-This is garbage
-RewriteEngine On
-RewriteRule ecc.png ecc.php
-
-swflkj

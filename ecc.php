@@ -9,8 +9,8 @@ if (file_exists($cachefile) && time() - $cachetime < filemtime($cachefile)) {
 }
 ob_start(); // Start the output buffer
 
-$online = exec('php /var/www/players.php');
-$isup = exec('php /var/www/isup.php');
+$online = exec('python /home/bot/mcpy/ping_server.py mc.ecocitycraft.com 25565');
+$isup = exec('python /home/bot/isup.py mc.ecocitycraft.com 25565');
 
 $my_img = imagecreatefrompng("Untitled.png");
 $background = imagecolorallocate( $my_img, 255, 255, 255 );
