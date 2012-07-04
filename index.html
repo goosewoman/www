@@ -1,0 +1,171 @@
+<html>
+<head>
+<title>Javascript digital clock, by kukelekuuk00.</title>
+<script type = "text/javascript">
+
+
+
+var  GMToffset = 0,t;
+
+function start() {
+  GMToffset=zxcReadCookie('time')||0;
+  t=setInterval('digitalclock()',500);
+}
+
+
+function digitalclock()
+{
+var monthArray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
+var today=new Date();
+var hours=(today.getHours() + GMToffset*1)%24;
+var daygmt=today.getTime()+ ((offset-1)*3600000);
+var myDate = new Date(daygmt);
+var asgk= myDate.toDateString();
+var minutes=today.getMinutes();
+var seconds=today.getSeconds();
+var day=today.getDate()
+var year=today.getFullYear();
+var month=today.getMonth();
+var timezone = "";
+	if(time == "12h")
+	{
+	var t = " PM "
+		if (hours < 12)
+		{
+		t = " AM "
+		}
+		if (hours > 12)
+		{
+		hours -= 12
+		}
+	}
+	else
+	{
+	var t = ""
+	}
+	
+if (GMToffset == -1){
+timezone = " (GMT) "
+}
+if (GMToffset == -2){
+timezone = " (GMT-1) "
+}
+if (GMToffset == -3){
+timezone = " (GMT-2) "
+}
+if (GMToffset == -4){
+timezone = " (GMT-3) "
+}
+if (GMToffset == -5){
+timezone = " (GMT-4) "
+}
+if (GMToffset == -6){
+timezone = " (GMT-5) "
+}
+if (GMToffset == -7){
+timezone = " (GMT-6) "
+}
+if (GMToffset == -8){
+timezone = " (GMT-7) "
+}
+if (GMToffset == -9){
+timezone = " (GMT-8) "
+}
+if (GMToffset == -10){
+timezone = " (GMT-9) "
+}
+if (GMToffset == -11){
+timezone = " (GMT-10) "
+}
+if (GMToffset == 0){
+timezone = " (GMT+1) "
+}
+if (GMToffset == 1){
+timezone = " (GMT+2) "
+}
+if (GMToffset == 2){
+timezone = " (GMT+3) "
+}
+if (GMToffset == 3){
+timezone = " (GMT+4) "
+}
+if (GMToffset == 4){
+timezone = " (GMT+5) "
+}
+if (GMToffset == 5){
+timezone = " (GMT+6) "
+}
+if (GMToffset == 6){
+timezone = " (GMT+7) "
+}
+if (GMToffset == 7){
+timezone = " (GMT+8) "
+}
+if (GMToffset == 8){
+timezone = " (GMT+9) "
+}
+if (GMToffset == 9){
+timezone = " (GMT+10) "
+}
+if (GMToffset == 10){
+timezone = " (GMT+11) "
+}
+if (GMToffset == 11){
+timezone = " (GMT+12) "
+}
+if (day == 1){
+day = day+"st"
+}
+if (day == 2){
+day = day+"nd "
+}
+if (day > 2){
+day = day+"th "
+}
+minutes=checkTime(minutes);
+seconds=checkTime(seconds);
+hours=checkTime(hours);
+document.getElementById('txt').innerHTML=hours+":"+minutes+":"+seconds+t+"<i><b>"+timezone+"</b></i>"+asgk;
+}
+
+function checkTime(i)
+{
+if (i<10)
+  {
+  i="0" + i;
+  }
+return i;
+}
+
+function updatetime(nu) {
+  GMToffset = nu;
+  zxcCreateCookie('time',nu,0); // change 1 to the number of days persistance required
+}
+
+function zxcCreateCookie(nme,v,days){
+ document.cookie=nme+'='+v+';expires='+(new Date(new Date().getTime()+days*86400000).toGMTString())+';path=/';
+}
+
+function zxcReadCookie(nme){
+ nme+='=';
+ var split = document.cookie.split(';');
+ for(var z0=0;z0<split.length;z0++){
+  var s=split[z0];
+  while (s.charAt(0)==' ') s=s.substring(1,s.length);
+  if (s.indexOf(nme)==0) return s.substring(nme.length,s.length);
+ }
+ return null;
+}
+
+var time = "12h"; //12h clock or 24h clock
+var offset = 11; //The timezone offset (0 = GMT)
+
+</script>
+
+</head>
+<body onload="start(); updatetime(offset-1)"> 
+<div align="center"><h1>Javascript digital clock, by kukelekuuk00.</h1></div>
+<div align="center" id="txt"></div>
+<div align="center"><h3>See the source for the javascript.</h3></div>
+
+</html>
